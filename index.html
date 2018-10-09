@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Technical documentation page</title>
+</head>
+<body>
+  <nav id="navbar">
+    <header id="title">JavaScript</header>
+    <ul>
+      <li class="nav"><a href="#Individual_or_compiled" class="nav-link">Individual or compiled</a></li>
+      <li class="nav"><a href="#Dependencies" class="nav-link">Dependencies</a></li>
+      <li class="nav"><a href="#Data_attributes" class="nav-link">Data attributes</a></li>
+      <li class="nav"><a href="#Events" class="nav-link">Events</a></li>
+      <li class="nav"><a href="#Programmatic_API" class="nav-link">Programmatic API</a></li>
+      <li class="nav"><a href="#Community" class="nav-link">Community</a></li>
+    </ul>
+  </nav>
+  <main id="main-doc">
+    <h2 id="introduction">JavaScript</h2>
+    <p class="title-description">Bring Bootstrap to life with our optional JavaScript plugins built on jQuery. Learn about each plugin, our data and programmatic API options, and more.</p>
+    <section class="main-section" id="Individual_or_compiled">
+    <header>Individual or compiled</header>
+    <p>Individual or compiled Plugins can be included individually (using Bootstrap’s individual <span>js/dist/*.js</span>), or all at once using <span>bootstrap.js</span> or the minified <span>bootstrap.min.js</span> (don’t include both).</p>
+    <p>If you use a bundler (Webpack, Rollup…), you can use <span>/js/dist/*.js</span> files which are UMD ready.
+    </p>
+    </section>
+    <section class="main-section" id="Dependencies">
+    <header>Dependencies</header>
+    <p>Some plugins and CSS components depend on other plugins. If you include plugins individually, make sure to check for these dependencies in the docs. Also note that <strong>all plugins depend on jQuery</strong> (this means jQuery must be included <strong>before</strong> the plugin files). <a href="#">Consult our package.json</a> to see which versions of jQuery are supported.</p>
+    <p>Our dropdowns, popovers and tooltips also depend on <a href="#">Popper.js</a>.</p>
+    </section>
+    <section class="main-section" id="Data_attributes">
+    <header>Data attributes</header>
+    <p>Nearly all Bootstrap plugins can be enabled and configured through HTML alone with data attributes (our preferred way of using JavaScript functionality). Be sure to <strong>only use one set of data attributes on a single element</strong> (e.g., you cannot trigger a tooltip and modal from the same button.)</p>
+    <p>However, in some situations it may be desirable to disable this functionality. To disable the data attribute API, unbind all events on the document namespaced with data-api like so:</p>
+    <figure>
+      <pre>
+        <code spellcheck="false">
+    $(document).off(<span>'.data-api'</span>)
+        </code>
+      </pre>
+    </figure>
+    <p>Alternatively, to target a specific plugin, just include the plugin’s name as a namespace along with the data-api namespace like this:</p>
+    <figure>
+      <pre>
+        <code>
+    $(document).off(<span>'.alert.data-api'</span>)
+        </code>
+      </pre>
+    </figure>
+    </section>
+    <section class="main-section" id="Events">
+    <header>Events</header>
+    <p>Bootstrap provides custom events for most plugins’ unique actions. Generally, these come in an infinitive and past participle form - where the infinitive (ex. <span>show</span>) is triggered at the start of an event, and its past participle form (ex. <span>shown</span>) is triggered on the completion of an action.</p>
+    <p>All infinitive events provide <a href="#">preventDefault()</a> functionality. This provides the ability to stop the execution of an action before it starts. Returning false from an event handler will also automatically call <span>preventDefault().</span></p>
+    <figure>
+      <pre>
+        <code>
+    $(<span>'#myModal'</span>).on(<span>'show.bs.modal'</span>, function (e) {
+    // stops modal from being shown
+    if (!data) return e.preventDefault() 
+    })
+        </code>
+      </pre>
+    </figure>
+    </section>
+    <section class="main-section" id="Programmatic_API">
+        <header>Programmatic API</header>
+        <p>We also believe you should be able to use all Bootstrap plugins purely through the JavaScript API. All public APIs are single, chainable methods, and return the collection acted upon.</p>
+        <figure>
+          <pre>
+            <code>
+    $(<span>'.btn.danger'</span>).button(<span>'toggle'</span>).addClass(<span>'fat'</span>)
+            </code>
+          </pre>
+        </figure>
+        <p>All methods should accept an optional options object, a string which targets a particular method, or nothing (which initiates a plugin with default behavior):</p>
+    <figure>
+      <pre>
+        <code>
+    // initialized with defaults
+    $(<span>'#myModal'</span>).modal()
+  
+    // initialized with no keyboard
+    $(<span>'#myModal'</span>).modal({ keyboard: false }) 
+  
+    // initializes and invokes show immediately
+    $(<span>'#myModal'</span>).modal(<span>'show'</span>)                
+        </code>
+      </pre>
+    </figure>
+        <p>Each plugin also exposes its raw constructor on a <span>Constructor</span> property: <span>$.fn.popover.Constructor</span>. If you’d like to get a particular plugin instance, retrieve it directly from an element: <span>$('[rel="popover"]').data('popover')</span>.</p>
+    </section>
+    <section class="main-section" id="Community">
+      <header>Community</header>
+      <p>Stay up to date on the development of Bootstrap and reach out to the community with these helpful resources.</p>
+      <ul>
+        <li>Follow <a href="#">@getbootstrap on Twitter</a>.</li>
+        <li>Read and subscribe to <a href="#">The Official Bootstrap Blog</a>.</li>
+        <li>Join <a href="#">the official Slack room</a>.</li>
+        <li>Chat with fellow Bootstrappers in IRC. On the <span>irc.freenode.net</span> server, in the <span>##bootstrap</span> channel.</li>
+        <li>Implementation help may be found at Stack Overflow (tagged <a href="#">bootstrap-4</a>).</li>
+        <li>Developers should use the keyword <span>bootstrap</span> on packages which modify or add to the functionality of Bootstrap when distributing through <a href="#">npm</a> or similar delivery mechanisms for maximum discoverability.</li>
+      </ul>
+      <p>You can also follow <a href="#">@getbootstrap on Twitter</a> for the latest gossip and awesome music videos.</p>
+    </section>
+  </main>
+  <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+</html>
